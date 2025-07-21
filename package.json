@@ -1,6 +1,6 @@
 {
   "name": "crypto-shelf",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Library collection for password hashing, HMAC-based signature generation, and symmetric encryption. Build on top of Node's crypto module",
   "main": "./lib/index.js",
   "type": "module",
