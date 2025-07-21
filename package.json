@@ -1,0 +1,80 @@
+{
+  "name": "crypto-shelf",
+  "version": "0.0.0",
+  "description": "Library collection for password hashing, HMAC-based signature generation, and symmetric encryption. Build on top of Node's crypto module",
+  "main": "./lib/index.js",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./lib/index.js",
+      "types": "./lib/index.d.ts"
+    },
+    "./authentication": {
+      "import": "./lib/authentication.js",
+      "types": "./lib/authentication.d.ts"
+    },
+    "./symmetric": {
+      "import": "./lib/symmetric.js",
+      "types": "./lib/symmetric.d.ts"
+    },
+    "./signature": {
+      "import": "./lib/signature.js",
+      "types": "./lib/signature.d.ts"
+    }
+  },
+  "scripts": {
+    "start": "npm run dev",
+    "dev": "nodemon examples/index.js --exec \"npm run lint && node\"",
+    "dev:inspect": "nodemon --inspect-brk examples/index.js",
+    "lint": "eslint .",
+    "lint:fix": "npm run lint -- --fix",
+    "pub": "node scripts/publish.js",
+    "pub:patch": "npm version patch",
+    "pub:feature": "npm version minor",
+    "preversion": "npm run lint",
+    "postversion": "git push && git push --tags"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/richterdennis/crypto-shelf.git"
+  },
+  "keywords": [
+    "crypto",
+    "encryption",
+    "decryption",
+    "password-hashing",
+    "scrypt",
+    "hmac",
+    "signature",
+    "authentication",
+    "hashing",
+    "secure",
+    "nodejs",
+    "node",
+    "crypto-module",
+    "symmetric-encryption",
+    "authenticated-encryption",
+    "chacha20",
+    "aes-gcm",
+    "aes-ocb",
+    "secure-storage",
+    "data-integrity",
+    "timing-safe",
+    "key-derivation"
+  ],
+  "author": "Dennis Richter <crypto.shelf@richterdennis.de>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/richterdennis/crypto-shelf/issues"
+  },
+  "homepage": "https://github.com/richterdennis/crypto-shelf#readme",
+  "devDependencies": {
+    "@eslint/js": "9.31.0",
+    "@stylistic/eslint-plugin": "5.2.0",
+    "crypto-shelf": "file:",
+    "eslint": "9.31.0",
+    "globals": "^16.3.0",
+    "nodemon": "^3.1.10",
+    "prompts": "^2.4.2"
+  }
+}
