@@ -5,6 +5,7 @@ A lightweight and secure Node.js library collection for password hashing and com
 ## Table of Contents
 **[Installation](#installation)**<br>
 **[crypto-shelf/authentication](#crypto-shelfauthentication)**<br>
+**[crypto-shelf/hash](#crypto-shelfhash)**<br>
 **[crypto-shelf/signature](#crypto-shelfsignature)**<br>
 **[crypto-shelf/symmetric](#crypto-shelfsymmetric)**<br>
 
@@ -13,6 +14,8 @@ A lightweight and secure Node.js library collection for password hashing and com
 ```bash
 npm i crypto-shelf
 ```
+
+&nbsp;
 
 ## crypto-shelf/authentication
 
@@ -55,6 +58,7 @@ console.log(isCorrect); // true or false
 | keyLength    | number   | 48           | Length of the derived key (1–255)             |
 | saltLength   | number   | 16           | Length of the salt (1–255)                    |
 | encoding     | string   | 'base64url'  | Output encoding (e.g., 'hex', 'base64')       |
+&nbsp;
 
 Global defaults can be adjusted via the `defaults` object:
 
@@ -90,7 +94,65 @@ const isValid = await comparePassword('SomePassword!1!11', hash, { encoding });
 - Mitigates timing attacks with `timingSafeEqual`
 - Secure defaults with customizable options
 
----
+
+&nbsp;
+
+## crypto-shelf/hash
+
+Provides hashing using Node's native `crypto` module.
+
+### Features
+
+- Supports common hash algorithms: `md5`, `sha1`, `sha256`, `sha512`, etc. with short cut functions
+- Customizable output encodings in `hex`, `base64`, `base64url`, or raw `Buffer` (Default `hex`)
+
+### Usage
+
+#### Import
+
+```js
+import hash, { md5, sha256 } from 'crypto-shelf/hash';
+```
+
+#### Use shortcut functions
+
+```js
+const hash = md5('Lorem Ipsum');
+console.log(hash); // hex
+```
+
+#### Use shortcut functions with custom output encoding
+
+```js
+const hash = sha256('Lorem Ipsum', { encoding: 'base64' });
+console.log(hash); // base64
+```
+
+#### Use general hash function with or without custom output encoding
+
+```js
+hash('shake256', 'Lorem Ipsum'); // hex
+hash('sha3-384', 'Lorem Ipsum', { encoding: 'base64url' }); // base64url
+hash('RIPEMD160', 'Lorem Ipsum', { encoding: null }); // Returns a buffer if encoding is null
+```
+
+### How It Works
+
+- Generates hashes based on node's `createHash`
+
+### Supported Algorithms
+
+Compatible with all algorithms listed by `crypto.getHashes()`. Common ones include:
+
+- `md5`
+- `sha1`, `sha224`, `sha256`, `sha384`, `sha512`, `sha512-224`, `sha512-256`
+- `sha3-224`, `sha3-256`, `sha3-384`, `sha3-512`
+- `shake128`, `shake256`
+- `blake2b512`, `blake2s256`
+- `sm3`
+
+
+&nbsp;
 
 ## crypto-shelf/signature
 
@@ -148,6 +210,7 @@ console.log('Data valid:', isValid);
 | algorithm  | string   | 'sha256'     | HMAC algorithm (e.g., 'sha384')               |
 | keyLength  | number   | null         | Derived key length (defaults to algorithm safe value) |
 | encoding   | string   | 'base64url'  | Output encoding                               |
+&nbsp;
 
 Global configuration via `defaults`:
 
@@ -183,7 +246,8 @@ const isValid = verifySignature(secret, signature, data, { algorithm, encoding }
 - Constant-time comparison prevents signature leakage
 - Customizable with secure defaults
 
----
+
+&nbsp;
 
 ## crypto-shelf/symmetric
 
@@ -235,6 +299,7 @@ console.log({ encrypted, decrypted });
 | algorithm  | string   | 'aes-256-gcm'  | Encryption algorithm to use                  |
 | encoding   | string   | 'base64url'    | Output encoding                              |
 | aad        | string   | null           | Additional Authenticated Data                |
+&nbsp;
 
 Adjust global defaults:
 

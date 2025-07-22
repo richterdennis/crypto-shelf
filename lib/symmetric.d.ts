@@ -1,19 +1,21 @@
-export interface Options {
+import { BinaryToTextEncoding } from 'node:crypto';
+
+interface Options {
 	algorithm?: string,
-	encoding?: null | BufferEncoding,
+	encoding?: null | BinaryToTextEncoding,
 	aad?: null | string,
 }
 
 export declare const defaults: Options;
 
 export declare function generateSalt(
-	options?: { encoding?: null | BufferEncoding, saltLength: number }
+	options?: { encoding?: null | BinaryToTextEncoding, saltLength: number }
 ): string | Buffer
 
 export declare function generateKey(
 	passphrase: string | Buffer,
 	salt?: string | Buffer,
-	options?: { algorithm?: string, encoding?: null | BufferEncoding }
+	options?: { algorithm?: string, encoding?: null | BinaryToTextEncoding }
 ): Promise<Buffer>
 
 export declare function encrypt(

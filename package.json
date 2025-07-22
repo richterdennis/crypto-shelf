@@ -13,6 +13,10 @@
       "import": "./lib/authentication.js",
       "types": "./lib/authentication.d.ts"
     },
+    "./hash": {
+      "import": "./lib/hash.js",
+      "types": "./lib/hash.d.ts"
+    },
     "./symmetric": {
       "import": "./lib/symmetric.js",
       "types": "./lib/symmetric.d.ts"
@@ -70,7 +74,7 @@
   "homepage": "https://github.com/richterdennis/crypto-shelf#readme",
   "devDependencies": {
     "@eslint/js": "9.31.0",
-    "@stylistic/eslint-plugin": "5.2.0",
+    "@stylistic/eslint-plugin": "5.2.2",
     "crypto-shelf": "file:",
     "eslint": "9.31.0",
     "globals": "^16.3.0",

@@ -1,7 +1,9 @@
+import { BinaryToTextEncoding } from 'node:crypto';
+
 export interface Options {
 	keyLength?: number;
 	saltLength?: number;
-	encoding?: null | BufferEncoding;
+	encoding?: null | BinaryToTextEncoding;
 }
 
 export declare const defaults: Options;
@@ -14,5 +16,5 @@ export declare function hashPassword(
 export declare function comparePassword(
 	clear: string | Buffer,
 	hash: string | Buffer,
-	options?: { encoding?: null | BufferEncoding }
+	options?: { encoding?: null | BinaryToTextEncoding }
 ): Promise<boolean>;
