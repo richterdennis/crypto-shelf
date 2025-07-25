@@ -20,12 +20,12 @@ export declare function generateKey(
 
 export declare function encrypt(
 	key: Buffer,
-	str: string,
+	input: string,
 	options?: Options
 ): string | Buffer
 
 export declare function decrypt(
 	key: Buffer,
-	str: string | Buffer,
+	input: string | Buffer,
 	options?: Options
 ): string
