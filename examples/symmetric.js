@@ -52,6 +52,23 @@ console.log('encrypted:', encrypted.toString('base64'));
 const decryptedCorrectly = plaintext === decrypt(key, encrypted);  // Always takes key as a buffer. Takes encrypted as a buffer now. Always returns a string
 console.log('decryptedCorrectly:', decryptedCorrectly);
 
+// For fun
+for (const algorithm of generateUsableCipherList().slice(0, 6)) {
+	console.log('-----------------------------');
+	console.log('algorithm:', algorithm);
+
+	const key = await generateKey('MySecretPassphrase', null, { algorithm });
+	console.log('key:', key.toString('base64'));
+
+	const encrypted = encrypt(key, plaintext, { algorithm, aad: 'test' });
+	console.log('encrypted:', encrypted.toString('base64'));
+
+	const decryptedCorrectly = plaintext === decrypt(key, encrypted, { algorithm, aad: 'test' });
+	console.log('decryptedCorrectly:', decryptedCorrectly);
+
+	if (!decryptedCorrectly) throw new Error('Whooops!');
+}
+
 function orderCiphersByRanking(algorithms) {
 	return algorithms.sort((a, b) => {
 		if (a === b) return 0;

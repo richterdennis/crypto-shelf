@@ -3,27 +3,28 @@
   "version": "1.1.0",
   "description": "Library collection for password hashing, HMAC-based signature generation, and symmetric encryption. Build on top of Node's crypto module",
   "main": "./lib/index.js",
+  "types": "./types/index.d.ts",
   "type": "module",
   "exports": {
     ".": {
       "import": "./lib/index.js",
-      "types": "./lib/index.d.ts"
+      "types": "./types/index.d.ts"
     },
     "./authentication": {
       "import": "./lib/authentication.js",
-      "types": "./lib/authentication.d.ts"
+      "types": "./types/authentication.d.ts"
     },
     "./hash": {
       "import": "./lib/hash.js",
-      "types": "./lib/hash.d.ts"
+      "types": "./types/hash.d.ts"
     },
     "./symmetric": {
       "import": "./lib/symmetric.js",
-      "types": "./lib/symmetric.d.ts"
+      "types": "./types/symmetric.d.ts"
     },
     "./signature": {
       "import": "./lib/signature.js",
-      "types": "./lib/signature.d.ts"
+      "types": "./types/signature.d.ts"
     }
   },
   "scripts": {

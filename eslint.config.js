@@ -48,7 +48,6 @@ export default [
 				object: true,
 			}],
 			'prefer-template': 'error',
-			'sort-keys': ['error', 'asc', { natural: true, allowLineSeparatedGroups: true, minKeys: 6 }],
 		},
 	},
 
