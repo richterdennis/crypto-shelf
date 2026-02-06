@@ -1,17 +1,19 @@
 import { BinaryToTextEncoding } from 'node:crypto';
 
-export interface Options {
-	keyLength?: number;
-	saltLength?: number;
-	encoding?: null | BinaryToTextEncoding;
+interface Options {
+	keyLength: number;
+	saltLength: number;
 }
 
-export declare const defaults: Options;
+type HashResult<E extends BinaryToTextEncoding | null | undefined> =
+	E extends 'base64' | 'base64url' | 'hex' ? string : Buffer;
 
-export declare function hashPassword(
+export declare const defaults: Options & { encoding: BinaryToTextEncoding | null };
+
+export declare function hashPassword<E extends BinaryToTextEncoding | null | undefined = 'base64url'>(
 	password: string | Buffer,
-	options?: Options
-): Promise<Buffer | string>;
+	options?: Partial<Options> & { encoding?: E }
+): Promise<HashResult<E>>;
 
 export declare function comparePassword(
 	clear: string | Buffer,

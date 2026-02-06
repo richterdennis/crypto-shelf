@@ -3,12 +3,12 @@ import { BinaryToTextEncoding, HashOptions } from 'node:crypto';
 type HashResult<E extends BinaryToTextEncoding | null | undefined> =
 	E extends 'base64' | 'base64url' | 'hex' | undefined ? string : Buffer;
 
-type HashFn = <E extends BinaryToTextEncoding | null | undefined = undefined>(
+type HashFn = <E extends BinaryToTextEncoding | null | undefined = 'hex'>(
 	value: string | Buffer,
 	options?: HashOptions & { encoding?: E }
 ) => HashResult<E>;
 
-declare function hash<E extends BinaryToTextEncoding | null | undefined = undefined>(
+declare function hash<E extends BinaryToTextEncoding | null | undefined = 'hex'>(
 	algorithm: string,
 	value: string | Buffer,
 	options?: HashOptions & { encoding?: E }
